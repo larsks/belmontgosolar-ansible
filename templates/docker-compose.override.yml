@@ -6,7 +6,7 @@ rt:
   ports:
     - 10080:80
   environment:
-    RT_RTNAME: gosolar
+    RT_RTNAME: solar
     RT_ORGANIZATION: "{{gosolar_web_server}}"
     RT_CORRESPONDADDRESS: "{{gosolar_email_address}}"
     RT_WEBDOMAIN: "{{gosolar_web_server}}"
