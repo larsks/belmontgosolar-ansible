@@ -1,0 +1,24 @@
+postgres:
+  environment:
+    POSTGRES_PASSWORD: "{{gosolar_postgres_password}}"
+
+rt:
+  environment:
+    RT_RTNAME: gosolar
+    RT_ORGANIZATION: "{{gosolar_web_server}}"
+    RT_CORRESPONDADDRESS: "{{gosolar_email_address}}"
+    RT_WEBDOMAIN: "{{gosolar_web_server}}"
+    RT_RESTRICTREFERRER: 'false'
+    SMTP_HOST: "{{gosolar_smtp_server}}"
+    SMTP_PORT: 465
+    SMTP_AUTH: 'true'
+    SMTP_USER: "{{gosolar_email_address}}"
+    SMTP_PASS: "{{gosolar_email_password}}"
+    SMTP_FROM: "{{gosolar_email_address}}"
+    SMTP_TLS_STARTTLS: 'fase'
+    SMTP_TLS: 'true'
+    GETMAIL_HOST: "{{gosolar_pop_server}}"
+    GETMAIL_USER: "{{gosolar_email_address}}"
+    GETMAIL_PASS: "{{gosolar_email_password}}"
+    GETMAIL_USE_SSL: 'true'
+
