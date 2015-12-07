@@ -3,6 +3,8 @@ postgres:
     POSTGRES_PASSWORD: "{{gosolar_postgres_password}}"
 
 rt:
+  ports:
+    - 10080:80
   environment:
     RT_RTNAME: gosolar
     RT_ORGANIZATION: "{{gosolar_web_server}}"
