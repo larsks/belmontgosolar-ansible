@@ -6,7 +6,6 @@
   roles:
     - selinux
   tasks:
-    - include_vars: 
     - raw: dnf -y install python-dnf
     - dnf:
         name: "{{item}}"
@@ -28,3 +27,23 @@
     - template:
         src: templates/docker-compose.override.yml
         dest: /etc/gosolar/docker-compose.override.yml
+
+    - copy:
+        src: files/haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+      notify: restart haproxy
+
+    - command: docker-compose up -d
+      args:
+        chdir: /etc/gosolar
+
+    - service:
+        name: haproxy
+        state: running
+        enabled: true
+
+  handlers:
+    - name: restart haproxy
+      service:
+        name: haproxy
+        state: restarted
