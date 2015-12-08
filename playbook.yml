@@ -28,7 +28,7 @@
         src: templates/docker-compose.override.yml
         dest: /etc/gosolar/docker-compose.override.yml
 
-    - copy:
+    - template:
         src: files/haproxy.cfg
         dest: /etc/haproxy/haproxy.cfg
       notify: restart haproxy
@@ -41,6 +41,11 @@
         name: haproxy
         state: running
         enabled: true
+
+    - template:
+        src: templates/sitedata
+        dest: /etc/gosolar/sitedata
+      tags: rtdata
 
   handlers:
     - name: restart haproxy
