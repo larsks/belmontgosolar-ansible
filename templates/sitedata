@@ -1,0 +1,18 @@
+{% for user in users %}
+push @Users, {
+Name        => '{{user.name}}',
+RealName    => '{{user.realname}}',
+Password    => '{{user.password}}',
+Language    => '{{user.lang|default('en_US')}}',
+Timezone    => '{{user.tz|default('America/New York')}}',
+Privileged  => 1,
+Disabled    => 0,
+};
+{% endfor %}
+
+push @Groups, {
+Name        => 'Solar Coaches',
+Description => 'Everyone responding to email questions',
+Members     => { Users =>  [ qw/ {{ users|map(attribute='name')|join(' ')}} / ] },
+};
+
